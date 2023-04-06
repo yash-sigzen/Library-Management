@@ -3,8 +3,8 @@ from . import __version__ as app_version
 app_name = "library_management"
 app_title = "Library Management"
 app_publisher = "yash"
-app_description = "Labrary app"
-app_email = "localdev1@gmail.com"
+app_description = "Librarymanagement"
+app_email = "yash@gmail.com"
 app_license = "MIT"
 
 # Includes in <head>

@@ -9,9 +9,9 @@ from library_management import __version__ as version
 setup(
 	name="library_management",
 	version=version,
-	description="Labrary app",
+	description="Librarymanagement",
 	author="yash",
-	author_email="localdev1@gmail.com",
+	author_email="yash@gmail.com",
 	packages=find_packages(),
 	zip_safe=False,
 	include_package_data=True,

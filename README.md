@@ -1,6 +1,6 @@
 ## Library Management
 
-Labrary app
+Librarymanagement
 
 #### License
 
