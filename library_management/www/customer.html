@@ -1,7 +1,5 @@
 {% extends 'templates/navebar/navebar.html' %}
 {% block slidebar %}
-{% set user = frappe.get_doc('User',frappe.session.user) %}
-{% set customer_list = frappe.get_all('Customer',filters={'sales_person':user.full_name},fields=['name1','city']) %}
 <div class="main-column col-sm-10">
   <div class="page-content-wrapper">
     <!-- breadcrumbs -->
@@ -20,6 +18,9 @@
               <tr style="background-color: #BFBFBF;">
                 <th style="width: 150px;text-align: center;" class="" data-fieldname="opportunity_document" data-fieldtype="Table">Customer Name</th>
                 <th style="width: 150px;text-align: center;" class="" data-fieldname="opportunity_document" data-fieldtype="Table">City</th>
+                <th style="width: 150px;text-align: center;" class="" data-fieldname="opportunity_document" data-fieldtype="Table">Zone</th>
+                <th style="width: 150px;text-align: center;" class="" data-fieldname="opportunity_document" data-fieldtype="Table">Type</th>
+                <th style="width: 150px;text-align: center;" class="" data-fieldname="opportunity_document" data-fieldtype="Table">Category</th>
               </tr>
             </thead>
             <tbody>
@@ -28,6 +29,9 @@
                 <tr>
                   <td style="text-align: center;"data-fieldname="opportunity_document" data-fieldtype="Table"><div class="value">{{customer.name1}}</div></td>
                   <td style="text-align: center;" data-fieldname="opportunity_document" data-fieldtype="Table"><div class="value">{{customer.city}}</div></td>
+                  <td style="text-align: center;"data-fieldname="opportunity_document" data-fieldtype="Table"><div class="value">{{customer.zone}}</div></td>
+                  <td style="text-align: center;" data-fieldname="opportunity_document" data-fieldtype="Table"><div class="value">{{customer.type}}</div></td>
+                  <td style="text-align: center;" data-fieldname="opportunity_document" data-fieldtype="Table"><div class="value">{{customer.category}}</div></td>
                 </tr>
               </div>
               {% endfor %}

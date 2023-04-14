@@ -1,1 +1,1 @@
-routes=[{'from_route':'/customer?<route>','to_route':'customer'}]
+routes=[{'from_route':'/customer','to_route':'customer'}]
