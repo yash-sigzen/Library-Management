@@ -19,7 +19,7 @@ MIT
 
       3.basic website
          site migrate
-         bench production
+         bench productionext install ms-python.pythonz
          import external bundle
         basic web page
 
@@ -29,4 +29,3 @@ MIT
          query report
          script report
 
-      
