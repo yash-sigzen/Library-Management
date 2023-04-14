@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<!-- Built on Frappe. https://frappeframework.com/ -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="generator" content="frappe">
+  <meta name="title" content="Me">
+  <meta name="language" content="en">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Me">
+  <meta name="twitter:title" content="Me">
+  <meta name="twitter:card" content="summary">
+  <title>Customer List</title>
+  <link rel="shortcut icon"
+    href="{{ favicon or "/assets/frappe/images/frappe-favicon.svg" }}" type="image/x-icon">
+  <link rel="icon"
+    href="{{ favicon or "/assets/frappe/images/frappe-favicon.svg" }}" type="image/x-icon">
+  {% for include in include_css -%}
+  {{ include_style(include) }}
+  {%- endfor -%}
+  <link rel="canonical" href="{{ canonical }}">
+
+	{%- block head -%}
+		{% include "templates/includes/head.html" %}
+	{%- endblock -%}
+
+	{%- block head_include %}
+		{{ head_include or "" }}
+	{% endblock -%}
+
+	{%- block style %}
+		{% if colocated_css -%}
+			<style>{{ colocated_css }}</style>
+		{%- endif %}
+	{%- endblock -%}
+  <link type="text/css" rel="stylesheet" media="all" href="import.css">
+  <link type="text/css" rel="stylesheet" media="all" href="basic.css">
+  <script>
+    window.frappe = {};
+    frappe.ready_events = [];
+    frappe.ready = function(fn) {
+      frappe.ready_events.push(fn);
+    }
+    window.dev_server = 1;
+    window.socketio_port = 9000;
+    window.show_language_picker = false;
+  </script>
+</head>
+<body frappe-session-status="logged-in" data-path="me" class="">
+  <nav class="navbar navbar-light navbar-expand-lg">
+  	<div class="container">
+  		<a class="navbar-brand" href="{{ url_prefix }}{{ home_page or "/" }}">
+  			{%- if brand_html -%}
+  				{{ brand_html }}
+  			{%- elif banner_image -%}
+  				<img src='{{ banner_image }}'>
+  			{%- else -%}
+  				<span>{{ (frappe.get_hooks("brand_html") or [_("Home")])[0] }}</span>
+  			{%- endif -%}
+  		</a>
+  		<button class="navbar-toggler" type="button"
+  			data-toggle="collapse"
+  			data-target="#navbarSupportedContent"
+  			aria-controls="navbarSupportedContent"
+  			aria-expanded="false"
+  			aria-label="Toggle navigation">
+  			<span>
+  				<svg class="icon icon-lg">
+  					<use href="#icon-menu"></use>
+  				</svg>
+  			</span>
+  		</button>
+
+  		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+  			{% include "templates/includes/navbar/navbar_items.html" %}
+  		</div>
+  		<div class="form-group mb-0 hide" id="language-switcher">
+  			<select class="form-control"></select>
+  		</div>
+  	</div>
+  </nav>
+  <div class="container">
+    <div class="row" id="page-me" data-path="me">
+      <div class="sidebar-column col-sm-2">
+        <div class="web-sidebar">
+          <div class="sidebar-items">
+            {% set portal_settings = frappe.get_doc('Portal Settings') %}
+            {% for sidebar in portal_settings.custom_menu %}
+            {% if frappe.db.exists('Has Role',{'parent':frappe.session.user,'role':sidebar.role}) or frappe.session.user == "Administrator" %}
+            {% if sidebar.enabled == 1 %}
+            <ul class="list-unstyled">
+              <li class="sidebar-item">
+                <a href="{{sidebar.route}}">{{sidebar.title}}</a>
+              </li>
+            </ul>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+            <ul class="list-unstyled">
+              <li class="sidebar-item">
+                <a href="/me" >My Account</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <script>
+          frappe.ready(function () {
+            $('.sidebar-item a').each(function (index) {
+              const active_class = 'active'
+              const non_active_class = ''
+              let page_href = window.location.href;
+              if (page_href.indexOf('#') !== -1) {
+                page_href = page_href.slice(0, page_href.indexOf('#'));
+              }
+              if (this.href.trim() == page_href) {
+                $(this).removeClass(non_active_class).addClass(active_class);
+              } else {
+                $(this).removeClass(active_class).addClass(non_active_class);
+              }
+            });
+
+            // scroll the active sidebar item into view
+            let active_sidebar_item = $('.sidebar-item a.active');
+            if (active_sidebar_item.length > 0) {
+              active_sidebar_item.get(0)
+              .scrollIntoView({behavior: "auto", block: "center", inline: "nearest"});
+            }
+          });
+        </script>
+      </div>
+      {% block slidebar %}
+      {% endblock %}
+    </div>
+  </div>
+  <footer class="web-footer">
+    <div class="container">
+      <div class="footer-logo-extension">
+        <div class="row">
+          <div class="text-left col-md-6"></div>
+          <div class="text-right col-md-6">
+          </div>
+        </div>
+      </div>
+      <div class="footer-links">
+        <div class="row">
+          <div class="footer-col-left col-sm-6"></div>
+          <div class="footer-col-right col-sm-6"></div>
+        </div>
+      </div>
+      <div class="footer-info">
+        <div class="row">
+          <div class="footer-col-left col-sm-6 col-12">
+          </div>
+          <div class="footer-col-right col-sm-6 col-12 footer-powered">
+            <a class="text-muted" href="https://frappeframework.com?source=website_footer" target="_blank">Built on Frappe</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- js should be loaded in body! -->
+  <script type="text/javascript" src="/assets/frappe/dist/js/frappe-web.bundle.TZMR2I5C.js"></script>
+  <script type="text/javascript" src="/website_script.js"></script>
+  <script type="text/javascript">
+    window._version_number = "{{ build_version }}";
+    // browser support
+    window.app = true;
+    window.dev_server = {{ dev_server }};
+
+    if (!window.frappe) window.frappe = {};
+
+    frappe.boot = JSON.parse({{ boot }});
+    frappe._messages = frappe.boot["__messages"];
+    frappe.csrf_token = "{{ csrf_token }}";
+  </script>
+</body>
+</html>

@@ -1,4 +1,5 @@
 from . import __version__ as app_version
+from library_management.route import routes
 
 app_name = "library_management"
 app_title = "Library Management"
@@ -18,6 +19,7 @@ app_license = "MIT"
 # web_include_css = "/assets/library_management/css/library_management.css"
 # web_include_js = "/assets/library_management/js/library_management.js"
 web_include_js = [ 'dashboard1.bundle.js']
+website_route_rules = routes
 # include custom scss in every website theme (without file extension ".scss")
 # website_theme_scss = "library_management/public/scss/website"
 
