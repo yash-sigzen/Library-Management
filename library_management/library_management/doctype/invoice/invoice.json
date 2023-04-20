@@ -13,6 +13,7 @@
   "pending_amount",
   "customer_name",
   "sales_person",
+  "date",
   "amended_from"
  ],
  "fields": [
@@ -58,12 +59,18 @@
    "options": "Invoice",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "date",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-04-14 15:53:57.752674",
+ "modified": "2023-04-15 12:15:30.236245",
  "modified_by": "Administrator",
  "module": "Library Management",
  "name": "Invoice",
