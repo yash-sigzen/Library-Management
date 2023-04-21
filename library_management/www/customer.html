@@ -1,52 +1,98 @@
 {% from "frappe/templates/includes/avatar_macro.html" import avatar %}
 {% extends "templates/web.html" %}
 {% block title %}
-
 {{ _("Customer List") }}
 {% endblock %}
 {% block page_content %}
-
-<div class="main-column col-sm-10">
-  <div class="page-content-wrapper">
-    <!-- breadcrumbs -->
-    <div class="page-breadcrumbs">
-    </div>
-    <main class="container my-4">
-      <div class="page-header-wrapper">
-        <div class="page-header">
+<div class="container-fluid">
+  <div class="row">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="position-sticky pt-3">
+        <form class="filter-wrap">
+          <div class="form-group form-group-blk">
+            <div class="sales-person"></div>
+            <div class="zone"></div>
+          </div>
+        </div>
+      </nav>
+      <main class="col-md-9 ml-auto col-lg-10 px-md-4">
+        <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Customer List</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class=" me-4 booking-details">
+            <div class="btn-group me-2 booking-link" style="padding-left: 2px;"></div>
+            <button type="button" class="btn btn-sm btn-primary btn-outline-secondary create-booking" id="create-booking">Create</button>
+          </div>
         </div>
       </div>
-      <div class="page_content">
-        <div data-fieldname="opportunity_document" data-fieldtype="Table">
-          <h3>Customer List</h3>
-          <table class="table table-bordered table-condensed">
-            <thead>
-              <tr style="background-color: #BFBFBF;">
-                <th style="width: 150px;text-align: center;" class="" data-fieldname="opportunity_document" data-fieldtype="Table">Customer Name</th>
-                <th style="width: 150px;text-align: center;" class="" data-fieldname="opportunity_document" data-fieldtype="Table">City</th>
-                <th style="width: 150px;text-align: center;" class="" data-fieldname="opportunity_document" data-fieldtype="Table">Zone</th>
-                <th style="width: 150px;text-align: center;" class="" data-fieldname="opportunity_document" data-fieldtype="Table">Type</th>
-                <th style="width: 150px;text-align: center;" class="" data-fieldname="opportunity_document" data-fieldtype="Table">Category</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for customer in customer_list %}
-              <div>
-                <tr>
-                  <td style="text-align: center;"data-fieldname="opportunity_document" data-fieldtype="Table"><div class="value">{{customer.name1}}</div></td>
-                  <td style="text-align: center;" data-fieldname="opportunity_document" data-fieldtype="Table"><div class="value">{{customer.city}}</div></td>
-                  <td style="text-align: center;"data-fieldname="opportunity_document" data-fieldtype="Table"><div class="value">{{customer.zone}}</div></td>
-                  <td style="text-align: center;" data-fieldname="opportunity_document" data-fieldtype="Table"><div class="value">{{customer.type}}</div></td>
-                  <td style="text-align: center;" data-fieldname="opportunity_document" data-fieldtype="Table"><div class="value">{{customer.category}}</div></td>
-                </tr>
-              </div>
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
+      <div class="row cars-list">
       </div>
-      <div class="page-footer"></div>
+      <div class="col-sm-12 text-center py-3">
+        <a class="previous btn btn-sm btn-default btn-get-records" style="display:none"">&laquo; Previous</a>
+        <a class="btn btn-sm btn-default btn-get-records next">Next &raquo;</a>
+      </div>
+      <div class="col-sm-12 text-center no-more">
+      </div>
     </main>
   </div>
 </div>
+<script type="text/javascript" src="/assets/frappe/js/lib/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/assets/js/frappe-web.min.js"></script>
+	<script type="text/javascript" src="/assets/js/control.min.js"></script>
+	<script type="text/javascript" src="/assets/js/dialog.min.js"></script>
+	<script type="text/javascript" src="/assets/js/bootstrap-4-web.min.js"></script>
+  <script type="text/javascript" src="/assets/frappe/js/frappe/form/layout.js"></script>
+<script>
+  frappe.ready(() => {
+    const $createbooking = $('.create-booking');
+    $createbooking.on('click', () => {
+      let d = new frappe.ui.Dialog({
+				title: 'Enter Customer details',
+				fields: [
+					{
+						label: 'Customer Name',
+						fieldname: 'customer_name',
+						fieldtype: 'Data',
+						mandatory:1
+					},
+					{
+						label: 'City',
+						fieldname: 'city',
+						fieldtype: 'Data',
+						mandatory:1
+					},
+					{
+						label: 'Type',
+						fieldname: 'type',
+						fieldtype: 'Select',
+						options:"Dealer\nPrivate\nArchitect\nTrader\nBuilder\nDealer",
+						mandatory:1
+					},
+					{
+						label: 'Zone',
+						fieldname: 'zone',
+						fieldtype: 'Select',
+						options:"North\nSouth\nEast\nWest",
+						mandatory:1
+					},
+					{
+						label: 'Category',
+						fieldname: 'category',
+						fieldtype: 'Select',
+						options:"Private\nPublic\nGoverment",
+						mandatory:1
+					}
+				],
+				primary_action_label: 'create',
+				primary_action(values) {
+					log(values)
+					d.hide();
+				}
+			});
+			d.show();
+			});
+  })
+</script>
+
 {% endblock %}

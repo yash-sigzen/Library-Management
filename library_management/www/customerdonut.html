@@ -1,0 +1,42 @@
+{% from "frappe/templates/includes/avatar_macro.html" import avatar %}
+{% extends "templates/web.html" %}
+{% block title %}
+{{ _("Customer List") }}
+{% endblock %}
+{% block page_content %}
+<div data-fieldname="opportunity_document" data-fieldtype="Table">
+	<script>
+		window.onload = function () {
+			frappe.call({
+				method: 'library_management.www.customerdonut.customer_list',
+				callback: function (r) {
+					if(r.message){
+						var sales_person = []
+						var count = []
+						r.message.forEach(function(item) {
+							sales_person.push(item.sales_person)
+							count.push(item.count)
+						})
+						let chart = new frappe.Chart( "#chartContainer", { // or DOM element
+							data: {
+								labels: sales_person,
+								datasets: [
+								{
+									values: count
+								}
+								],
+							},
+							type: 'donut', // or 'bar', 'line', 'pie', 'percentage', 'donut'
+							height: 300,
+							colors: ['#0A3771', '#1157B4', '#156DE1']
+						});
+						chart.render();
+					}
+				}
+			});
+		}
+	</script>
+	<div id="chartContainer" style="height: 500px; width: 100%;"></div>
+	<script src="https://unpkg.com/frappe-charts@latest"></script>
+</div>
+{% endblock %}

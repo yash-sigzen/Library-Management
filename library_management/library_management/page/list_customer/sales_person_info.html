@@ -1,0 +1,17 @@
+<div class="sales-person-info">
+    <div class="sales-person-image-container">
+		{% if sales_person_image %}
+			<div class="sales-person-image" src={{sales_person_image}} style="background-image: url(\'{%= sales_person_image %}\')"><img src="{{sales_person_image}}" alt="{{sales_person_name}}"></div>
+		{% endif %}
+    </div>
+    <div class="sales-person-intro">
+		{% if sales_person_name %}
+		<p class="sales-person-name bold">Name: {{sales_person_name}}</p>
+		{% endif %}
+		{% if mobileno %}
+		<p class="sales-person-mobile text-muted">{%=__("Contact: ") %} {{mobileno}}</p>
+		{% endif %}
+	</div>
+    <div class="sales-person-details">
+    </div>
+</div>
