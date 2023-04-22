@@ -17,36 +17,25 @@
       </div>
       <div class="page_content">
         <div data-fieldname="opportunity_document" data-fieldtype="Table">
-          <h3>Customer List</h3>
+          <h3>Complains</h3>
           <table class="table table-bordered table-condensed">
             <thead>
-            <tr style="background-color: #BFBFBF;">
-            <th style="width: 150px;text-align: center;" class="" data-fieldname="opportunity_document" data-fieldtype="Table">Customer Name</th>
-            <th style="width: 150px;text-align: center;" class="" data-fieldname="opportunity_document" data-fieldtype="Table">City</th>
-            <th style="width: 150px;text-align: center;" class="" data-fieldname="opportunity_document" data-fieldtype="Table">Zone</th>
-            <th style="width: 150px;text-align: center;" class="" data-fieldname="opportunity_document" data-fieldtype="Table">Type</th>
-            <th style="width: 150px;text-align: center;" class="" data-fieldname="opportunity_document" data-fieldtype="Table">Category</th>
-            <th style="width: 150px;text-align: center;" class="" data-fieldname="opportunity_document" data-fieldtype="Table">Sales Person</th>
-            </tr>
+              <tr style="background-color: #BFBFBF;">
+                <th style="width: 150px;text-align: center;" class="" data-fieldname="opportunity_document" data-fieldtype="Table">Customer Name</th>
+                <th style="width: 150px;text-align: center;" class="" data-fieldname="opportunity_document" data-fieldtype="Table">Complains</th>
+              </tr>
             </thead>
-            <input type="hidden" class="page_length"value="{{customer_list|len}}">
-            {% for customer in customer_list %}
-            <tbody class="table table-bordered table-condensed" style="margin-top: -21px;"><tbody>
-              <tr>
-              <td style="text-align: center;" data-fieldname="opportunity_document" data-fieldtype="Table"><a class="btn-customer"><div class="value">{{customer.name1}}</div></a></td>
-              <td style="text-align: center;" data-fieldname="opportunity_document" data-fieldtype="Table"><div class="value">{{customer.city}}</div></td>
-              <td style="text-align: center;"data-fieldname="opportunity_document" data-fieldtype="Table"><div class="value">{{customer.zone}}</div></td>
-              <td style="text-align: center;" data-fieldname="opportunity_document" data-fieldtype="Table"><div class="value">{{customer.type}}</div></td>
-              <td style="text-align: center;" data-fieldname="opportunity_document" data-fieldtype="Table"><div class="value">{{customer.category}}</div></td>
-              <td style="text-align: center;" data-fieldname="opportunity_document" data-fieldtype="Table"><div class="value">{{customer.sales_person}}</div></td>
-            </tr>
-          </tbody>
-          {% endfor %}
-        </table>
-        </div>
-        <div class="col-sm-12 text-center py-3">
-          <a class="previous btn btn-sm btn-default btn-get-records">&laquo; Previous</a>
-          <a class="btn btn-sm btn-default btn-get-records next">Next &raquo;</a>
+            <tbody>
+				{% for complain_temp in task%}
+              <div>
+                <tr>
+                  <td style="text-align: center;"data-fieldname="opportunity_document" data-fieldtype="Table"><div class="value">{{complain_temp.customer}}</div></td>
+                  <td style="text-align: center;" data-fieldname="opportunity_document" data-fieldtype="Table"><div class="value">{{complain_temp.complain}}</div></td>
+                </tr>
+              </div>
+              {% endfor %}
+            </tbody>
+          </table>
         </div>
       </div>
       <div class="page-footer"></div>
@@ -54,5 +43,3 @@
   </div>
 </div>
 	{% endblock %}
-
-

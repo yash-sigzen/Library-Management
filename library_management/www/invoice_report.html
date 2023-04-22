@@ -1,0 +1,61 @@
+{% from "frappe/templates/includes/avatar_macro.html" import avatar %}
+{% extends "templates/web.html" %}
+{% block title %}
+
+{{ _(" Invoice List") }}
+{% endblock %}
+{% block page_content %}
+    <div class="col-xs-12 column-break">
+            <div>
+                <input type="date" id="from_date">
+                <input type="date" id="to_date">
+                <button id="submit">Submit</button>
+            </div>
+        <div data-fieldname="fields" data-fieldtype="Table">
+            <table class="table table-bordered table-condensed">
+                <thead>
+                  <tr style="background-color: #BFBFBF;">
+                    <th style="width: 150px;text-align: center;" class="" data-fieldname="opportunity_document" data-fieldtype="Table">Customer Name</th>
+                    <th style="width: 150px;text-align: center;" class="" data-fieldname="opportunity_document" data-fieldtype="Table">Date</th>
+                    <th style="width: 150px;text-align: center;" class="" data-fieldname="opportunity_document" data-fieldtype="Table">Invoice No</th>
+                    <th style="width: 150px;text-align: center;" class="" data-fieldname="opportunity_document" data-fieldtype="Table">Pending Amount</th>
+                    <th style="width: 150px;text-align: center;" class="" data-fieldname="opportunity_document" data-fieldtype="Table">Total Amount</th>
+                    
+                </tr>
+                </thead>
+                <tbody>
+                    {% for invoice in tasks %}
+                  <div>
+                    <tr>
+                      <td style="text-align: center;"data-fieldname="opportunity_document" data-fieldtype="Table"><div class="value">{{invoice.customer_name}}</div></td>
+                      <td style="text-align: center;"data-fieldname="opportunity_document" data-fieldtype="Table"><div class="value">{{invoice.date}}</div></td>
+                      <td style="text-align: center;" data-fieldname="opportunity_document" data-fieldtype="Table"><a href="/items/{{invoice.invoice_no}}"><div class="value">{{invoice.invoice_no}}</div></a></td>
+                      <td style="text-align: center;"data-fieldname="opportunity_document" data-fieldtype="Table"><div class="value">{{invoice.pending_amount}}</div></td>
+                      <td style="text-align: center;" data-fieldname="opportunity_document" data-fieldtype="Table"><div class="value">{{invoice.total_amount}}</div></td>
+                    </tr>
+                  </div>
+                  {% endfor %}
+                </tbody>
+              </table>
+    </div>
+    
+    </div>
+    <script>
+        const submit = document.getElementById('submit');
+    
+    // Add click event listener to the button
+    submit.addEventListener('click', function() {
+        // Show the date picker
+        const frome_date = document.getElementById('from_date').value 
+        const to_date = document.getElementById('to_date').value 
+        frappe.call({
+        method: 'library_management.www.invoice_report.fiilterargs',
+        args: {'from_date':frome_date,'to_date':to_date}
+        ,callback:function(r){
+            console.log('Response-',r)
+        }
+    });
+    });
+    </script>
+
+    {% endblock %}
