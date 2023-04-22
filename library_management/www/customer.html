@@ -6,15 +6,6 @@
 {% block page_content %}
 <div class="container-fluid">
   <div class="row">
-    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-      <div class="position-sticky pt-3">
-        <form class="filter-wrap">
-          <div class="form-group form-group-blk">
-            <div class="sales-person"></div>
-            <div class="zone"></div>
-          </div>
-        </div>
-      </nav>
       <main class="col-md-9 ml-auto col-lg-10 px-md-4">
         <div
         class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -29,7 +20,7 @@
       <div class="row cars-list">
       </div>
       <div class="col-sm-12 text-center py-3">
-        <a class="previous btn btn-sm btn-default btn-get-records" style="display:none"">&laquo; Previous</a>
+        <a class="previous btn btn-sm btn-default btn-get-records" style="display:none">&laquo; Previous</a>
         <a class="btn btn-sm btn-default btn-get-records next">Next &raquo;</a>
       </div>
       <div class="col-sm-12 text-center no-more">
@@ -37,62 +28,5 @@
     </main>
   </div>
 </div>
-<script type="text/javascript" src="/assets/frappe/js/lib/jquery/jquery.min.js"></script>
-	<script type="text/javascript" src="/assets/js/frappe-web.min.js"></script>
-	<script type="text/javascript" src="/assets/js/control.min.js"></script>
-	<script type="text/javascript" src="/assets/js/dialog.min.js"></script>
-	<script type="text/javascript" src="/assets/js/bootstrap-4-web.min.js"></script>
-  <script type="text/javascript" src="/assets/frappe/js/frappe/form/layout.js"></script>
-<script>
-  frappe.ready(() => {
-    const $createbooking = $('.create-booking');
-    $createbooking.on('click', () => {
-      let d = new frappe.ui.Dialog({
-				title: 'Enter Customer details',
-				fields: [
-					{
-						label: 'Customer Name',
-						fieldname: 'customer_name',
-						fieldtype: 'Data',
-						mandatory:1
-					},
-					{
-						label: 'City',
-						fieldname: 'city',
-						fieldtype: 'Data',
-						mandatory:1
-					},
-					{
-						label: 'Type',
-						fieldname: 'type',
-						fieldtype: 'Select',
-						options:"Dealer\nPrivate\nArchitect\nTrader\nBuilder\nDealer",
-						mandatory:1
-					},
-					{
-						label: 'Zone',
-						fieldname: 'zone',
-						fieldtype: 'Select',
-						options:"North\nSouth\nEast\nWest",
-						mandatory:1
-					},
-					{
-						label: 'Category',
-						fieldname: 'category',
-						fieldtype: 'Select',
-						options:"Private\nPublic\nGoverment",
-						mandatory:1
-					}
-				],
-				primary_action_label: 'create',
-				primary_action(values) {
-					log(values)
-					d.hide();
-				}
-			});
-			d.show();
-			});
-  })
-</script>
 
 {% endblock %}

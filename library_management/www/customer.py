@@ -1,8 +1,13 @@
 import json
 import frappe
 from frappe.utils import cint
-from datetime import datetime
+from frappe import _
+no_cache = True
 
+def get_context(context):
+    if frappe.session.user == "Guest":
+        frappe.throw(_("You need to be logged in to access this page"), frappe.PermissionError)
+    context.show_sidebar = True
 
 @frappe.whitelist()
 def get_customer(sales_person=None,zone=None, start=0, page_length=4):

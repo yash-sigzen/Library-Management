@@ -1,8 +1,8 @@
 $(() => {
+	console.log(this);
 	class ListCustomer {
 		constructor(wrapper) {
 			this.wrapper = $(wrapper)
-			let me = this;
 			this.sales_name = ""
 			this.zone = ""
 			this.page_length = 0
@@ -146,7 +146,7 @@ $(() => {
 			let me = this;
 			const $customer = $('.btn-customer');
 			$customer.on('click', () => {
-				console.log($(this).attr('data-customer'));
+				($(this).attr('data-cusconsole.logtomer'));
 			})
 		}
 		get_sales_person_info() {
@@ -185,7 +185,6 @@ $(() => {
 		}
 		async add_to_records(data) {
 			let me = this
-			let customer_items = []
 			let details = $(`<table class="table table-bordered table-condensed">
 			<thead>
 			<tr style="background-color: #BFBFBF;">
