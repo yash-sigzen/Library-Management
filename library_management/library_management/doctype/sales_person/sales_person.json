@@ -9,6 +9,7 @@
  "engine": "InnoDB",
  "field_order": [
   "name1",
+  "image",
   "id",
   "mobileno",
   "city",
@@ -66,12 +67,17 @@
    "options": "Sales Person",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "label": "Image"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-04-21 13:22:53.961237",
+ "modified": "2023-04-19 12:04:26.955861",
  "modified_by": "Administrator",
  "module": "Library Management",
  "name": "Sales Person",

@@ -1,0 +1,23 @@
+{
+ "content": null,
+ "creation": "2023-04-19 11:06:55.789731",
+ "docstatus": 0,
+ "doctype": "Page",
+ "idx": 0,
+ "modified": "2023-04-19 13:39:47.359233",
+ "modified_by": "Administrator",
+ "module": "Library Management",
+ "name": "list-customer",
+ "owner": "Administrator",
+ "page_name": "list-customer",
+ "roles": [
+  {
+   "role": "Sales User"
+  }
+ ],
+ "script": null,
+ "standard": "Yes",
+ "style": null,
+ "system_page": 1,
+ "title": "Customer"
+}

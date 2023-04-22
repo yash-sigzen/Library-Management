@@ -1,0 +1,14 @@
+{% from "frappe/templates/includes/avatar_macro.html" import avatar %}
+{% extends "templates/web.html" %}
+{% block title %}
+{{ _("Customer List") }}
+{% endblock %}
+{% block page_content %}
+<div data-fieldname="opportunity_document" data-fieldtype="Table">
+  <div id="chart"></div>
+  <script src="https://unpkg.com/frappe-charts@latest"></script>
+</div>
+{% block script %}
+<script>{% include "library_management/www/customergrapg.js" %}</script>
+{% endblock %}
+{% endblock %}
