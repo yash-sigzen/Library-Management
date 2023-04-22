@@ -29,8 +29,7 @@
    "fieldname": "id",
    "fieldtype": "Int",
    "in_list_view": 1,
-   "label": "ID",
-   "reqd": 1
+   "label": "ID"
   },
   {
    "fieldname": "mobileno",
